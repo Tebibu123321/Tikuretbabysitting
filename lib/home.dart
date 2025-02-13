@@ -23,67 +23,122 @@ class Home extends StatelessWidget {
   }
 
   // Header section with baby image and text
-  Widget _buildHeader() {
-  return Padding(
+ Widget _buildHeader() {
+  List<Map<String, String>> articles = [
+    {
+      "title": "Responsible",
+      "description": "Babysitters ensure children's safety and well-being. This includes supervision, meal prep, and a clean environment.",
+      "image": "img/newborn.jpg"
+    },
+    {
+      "title": "Caring",
+      "description": "A good babysitter is compassionate, ensuring emotional support and happiness for children.",
+      "image": "img/la maison.jpg"
+    },
+    {
+      "title": "Patient",
+      "description": "Patience is key when dealing with children, helping them learn and grow in a stress-free environment.",
+      "image": "img/school.jpg"
+    }
+  ];
+
+   return Padding(
     padding: const EdgeInsets.all(16.0),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Image.asset(
-            'img/newborn.jpg', 
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: 280,
+    child: SizedBox(
+      height: 220,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: articles.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(
+              left: index == 0 ? 16.0 : 8.0, 
+              right: index == articles.length - 1 ? 16.0 : 8.0
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  Image.asset(
+                    articles[index]["image"]!,
+                    fit: BoxFit.cover,
+                    width: 320,
+                    height: 220,
+                  ),
+                  Container(
+                    width: 320,
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.7),
+                          Colors.black.withOpacity(0.3),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          articles[index]["title"]!,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          articles[index]["description"]!,
+                          style: const TextStyle(fontSize: 14, color: Colors.white70),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () { showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Babysitter Responsibilities"),
+          content: const Text(
+            "Babysitters are responsible for ensuring the safety and well-being of children under their care. "
+            "This includes supervising them at all times, preparing and serving meals or snacks, and maintaining a clean and safe environment. "
+            "They also engage children in fun and educational activities, provide emotional support, and follow parents’ instructions carefully."
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Colors.black.withOpacity(0.7),
-                  Colors.black.withOpacity(0.3),
-                  Colors.transparent,
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Close"),
+            ),
+          ],
+        );
+      },
+    );
+  },
+
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink.shade300,
+                            foregroundColor: Colors.white,
+                          ),
+                          child: const Text("Read article"),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  "Responsible",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  "Babysitters ensure children's safety and well-being. This includes supervision, meal prep, and a clean environment.",
-                  style: TextStyle(fontSize: 14, color: Colors.white70),
-                ),
-                const SizedBox(height: 8),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink.shade300,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text("Read article"),
-                ),
-              ],
-            ),
-          ),
-        ],
+          );
+        },
       ),
     ),
   );
+}
+
 }
 
   // Search bar widget
@@ -191,4 +246,3 @@ class Home extends StatelessWidget {
       ],
     );
   }
-}
