@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "413258250220",
+    "project_id": "tikuret-baby-sitting",
+    "storage_bucket": "tikuret-baby-sitting.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413258250220:android:6be7ebd33b01ee1caef2c9",
+        "android_client_info": {
+          "package_name": "com.example.tikuretbabysitting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBneTx1bFlcT5UkbPJXsb7Fb9JS3vK2ol8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
