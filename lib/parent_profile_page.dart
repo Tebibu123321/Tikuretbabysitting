@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class ParentProfilePage extends StatefulWidget {
-const ParentProfilePage({super.key});
+  const ParentProfilePage({super.key});
 
   @override
   _ParentProfilePageState createState() => _ParentProfilePageState();
@@ -14,7 +14,8 @@ const ParentProfilePage({super.key});
 class _ParentProfilePageState extends State<ParentProfilePage> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneCodeController = TextEditingController(text: '+251');
+  final TextEditingController phoneCodeController =
+      TextEditingController(text: '+251');
   final TextEditingController phoneNumberController = TextEditingController();
 
   String familyType = 'Father';
@@ -65,9 +66,10 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
                       children: [
                         CircleAvatar(
                           radius: 40,
-                          backgroundImage: _profileImage != null 
-                              ? FileImage(_profileImage!) 
-                              : AssetImage('assets/profile_picture.jpg') as ImageProvider,
+                          backgroundImage: _profileImage != null
+                              ? FileImage(_profileImage!)
+                              : AssetImage('assets/profile_picture.jpg')
+                                  as ImageProvider,
                         ),
                         Positioned(
                           bottom: 0,
@@ -171,24 +173,33 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
                   child: Column(
                     children: [
                       buildTextField('Full Name', fullNameController),
-                      buildDropdownField('Family Type', familyType, ['Father', 'Mother', 'Guardian'], (newValue) {
+                      buildDropdownField('Family Type', familyType,
+                          ['Father', 'Mother', 'Guardian'], (newValue) {
                         setState(() {
                           familyType = newValue!;
                         });
                       }),
                       buildTextField('Email', emailController),
-                      buildPhoneNumberField('Phone Number', phoneCodeController, phoneNumberController),
-                      buildDatePickerField('Date of Birth', dateOfBirth, (selectedDate) {
+                      buildPhoneNumberField('Phone Number', phoneCodeController,
+                          phoneNumberController),
+                      buildDatePickerField('Date of Birth', dateOfBirth,
+                          (selectedDate) {
                         setState(() {
                           dateOfBirth = selectedDate;
                         });
                       }),
-                      buildDropdownField('Location', location, ['Select', 'Addis Ababa', 'Nairobi', 'Moyale'], (newValue) {
+                      buildDropdownField('Location', location, [
+                        'Select',
+                        'Addis Ababa',
+                        'Nairobi',
+                        'Moyale'
+                      ], (newValue) {
                         setState(() {
                           location = newValue!;
                         });
                       }),
-                      buildDropdownField('Number of Children', numberOfChildren, ['Select', '1', '2', '3', '4+'], (newValue) {
+                      buildDropdownField('Number of Children', numberOfChildren,
+                          ['Select', '1', '2', '3', '4+'], (newValue) {
                         setState(() {
                           numberOfChildren = newValue!;
                         });
@@ -200,11 +211,15 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
                 Center(
                   child: ElevatedButton(
                     onPressed: isLoading ? null : saveProfile,
-                    child: isLoading ? CircularProgressIndicator(color: Colors.white) : Text('Save'),
+                    child: isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text('Save'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                      textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      textStyle:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -231,7 +246,8 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
     );
   }
 
-  Widget buildDropdownField(String label, String value, List<String> options, ValueChanged<String?> onChanged) {
+  Widget buildDropdownField(String label, String value, List<String> options,
+      ValueChanged<String?> onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: InputDecorator(
@@ -257,7 +273,8 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
     );
   }
 
-  Widget buildDatePickerField(String label, String selectedDate, ValueChanged<String> onDateSelected) {
+  Widget buildDatePickerField(
+      String label, String selectedDate, ValueChanged<String> onDateSelected) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: InkWell(
@@ -268,9 +285,7 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
             firstDate: DateTime(1900),
             lastDate: DateTime.now(),
           );
-          if (pickedDate != null) {
-            onDateSelected(DateFormat('yyyy-MM-dd').format(pickedDate));
-          }
+          onDateSelected(DateFormat('yyyy-MM-dd').format(pickedDate!));
         },
         child: InputDecorator(
           decoration: InputDecoration(
@@ -285,7 +300,10 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
     );
   }
 
-  Widget buildPhoneNumberField(String label, TextEditingController codeController, TextEditingController numberController) {
+  Widget buildPhoneNumberField(
+      String label,
+      TextEditingController codeController,
+      TextEditingController numberController) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -340,6 +358,7 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
       isLoading = false;
     });
 
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile Saved')));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Profile Saved')));
   }
-} 
+}

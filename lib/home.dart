@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'parent_profile_page.dart';
 
 class Home extends StatelessWidget {
@@ -27,17 +27,20 @@ class Home extends StatelessWidget {
     List<Map<String, String>> articles = [
       {
         "title": "Responsible",
-        "description": "Babysitters ensure children's safety and well-being. This includes supervision, meal prep, and a clean environment.",
+        "description":
+            "Babysitters ensure children's safety and well-being. This includes supervision, meal prep, and a clean environment.",
         "image": "img/newborn.jpg"
       },
       {
         "title": "Caring",
-        "description": "A good babysitter is compassionate, ensuring emotional support and happiness for children.",
+        "description":
+            "A good babysitter is compassionate, ensuring emotional support and happiness for children.",
         "image": "img/la maison.jpg"
       },
       {
         "title": "Patient",
-        "description": "Patience is key when dealing with children, helping them learn and grow in a stress-free environment.",
+        "description":
+            "Patience is key when dealing with children, helping them learn and grow in a stress-free environment.",
         "image": "img/school.jpg"
       }
     ];
@@ -52,9 +55,8 @@ class Home extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(
-                left: index == 0 ? 16.0 : 8.0, 
-                right: index == articles.length - 1 ? 16.0 : 8.0
-              ),
+                  left: index == 0 ? 16.0 : 8.0,
+                  right: index == articles.length - 1 ? 16.0 : 8.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Stack(
@@ -95,21 +97,22 @@ class Home extends StatelessWidget {
                           const SizedBox(height: 5),
                           Text(
                             articles[index]["description"]!,
-                            style: const TextStyle(fontSize: 14, color: Colors.white70),
+                            style: const TextStyle(
+                                fontSize: 14, color: Colors.white70),
                           ),
                           const SizedBox(height: 8),
                           ElevatedButton(
-                            onPressed: () { 
+                            onPressed: () {
                               showDialog(
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: const Text("Babysitter Responsibilities"),
+                                    title: const Text(
+                                        "Babysitter Responsibilities"),
                                     content: const Text(
-                                      "Babysitters are responsible for ensuring the safety and well-being of children under their care. "
-                                      "This includes supervising them at all times, preparing and serving meals or snacks, and maintaining a clean and safe environment. "
-                                      "They also engage children in fun and educational activities, provide emotional support, and follow parents’ instructions carefully."
-                                    ),
+                                        "Babysitters are responsible for ensuring the safety and well-being of children under their care. "
+                                        "This includes supervising them at all times, preparing and serving meals or snacks, and maintaining a clean and safe environment. "
+                                        "They also engage children in fun and educational activities, provide emotional support, and follow parents’ instructions carefully."),
                                     actions: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(context),
@@ -161,10 +164,22 @@ class Home extends StatelessWidget {
   // Babysitter list
   Widget _buildSitterList() {
     List<Map<String, dynamic>> sitters = [
-      {"name": "Sarah", "rating": 4.8, "image": "img/istockphoto-478803372-612x612.jpg"},
+      {
+        "name": "Sarah",
+        "rating": 4.8,
+        "image": "img/istockphoto-478803372-612x612.jpg"
+      },
       {"name": "Sophia", "rating": 4.7, "image": "img/SAKARA.jpg"},
-      {"name": "Lina", "rating": 4.9, "image": "img/1000_F_413554591_BQzOaigFwRTgpoXU8WLY6hhQZYzijQek.jpg"},
-      {"name": "Mia", "rating": 4.6, "image": "img/1000_F_72306359_lEjz2CAqkZQVGbZSjSG5mmKDeTbEqRER.jpg"},
+      {
+        "name": "Lina",
+        "rating": 4.9,
+        "image": "img/1000_F_413554591_BQzOaigFwRTgpoXU8WLY6hhQZYzijQek.jpg"
+      },
+      {
+        "name": "Mia",
+        "rating": 4.6,
+        "image": "img/1000_F_72306359_lEjz2CAqkZQVGbZSjSG5mmKDeTbEqRER.jpg"
+      },
     ];
 
     return Padding(
@@ -195,7 +210,8 @@ class Home extends StatelessWidget {
                 children: [
                   Text(
                     sitter["name"],
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const Text(
                     "Experienced babysitter available.",
@@ -204,7 +220,8 @@ class Home extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     "⭐ ${sitter["rating"]}   •   230 birr/hr",
-                    style: const TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: Colors.pink, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -214,7 +231,8 @@ class Home extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink.shade300,
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
               ),
               child: const Text("View Profile"),
             ),
@@ -240,9 +258,11 @@ class Home extends StatelessWidget {
         }
       },
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: "BookSitter"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark), label: "BookSitter"),
         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Notification"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.notifications), label: "Notification"),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
       ],
     );
