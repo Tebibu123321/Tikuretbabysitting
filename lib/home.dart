@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; 
 import 'parent_profile_page.dart';
+import 'favorite.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -232,6 +233,13 @@ class Home extends StatelessWidget {
       unselectedItemColor: Colors.black54,
       currentIndex: 0,
       onTap: (index) {
+
+        if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyFavorites()),
+          );
+        }
         if (index == 3) {
           Navigator.push(
             context,
