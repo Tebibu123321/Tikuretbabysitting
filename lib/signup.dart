@@ -20,7 +20,7 @@ class _SignupPageState extends State<SignupPage> {
       return 'Full Name is required';
     }
     if (!RegExp(r'^[a-zA-Z ]+\$').hasMatch(value.trim())) {
-      return 'Enter a valid name with only letters and spaces';
+      return null;
     }
     return null;
   }
@@ -30,7 +30,7 @@ class _SignupPageState extends State<SignupPage> {
       return 'Phone number is required';
     }
     if (!RegExp(r'^[0-9]{9}\$').hasMatch(value.trim())) {
-      return 'Enter a valid 9-digit phone number';
+      return null;
     }
     return null;
   }
@@ -40,7 +40,7 @@ class _SignupPageState extends State<SignupPage> {
       return 'Email is required';
     }
     if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\$').hasMatch(value.trim())) {
-      return 'Enter a valid email address';
+      return null;
     }
     return null;
   }
