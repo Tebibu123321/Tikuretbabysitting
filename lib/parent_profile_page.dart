@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -31,6 +31,35 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<void> saveProfile() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await FirebaseFirestore.instance.collection('parents').add({
+        'fullName': fullNameController.text,
+        'familyType': familyType,
+        'email': emailController.text,
+        'phoneCode': phoneCodeController.text,
+        'phoneNumber': phoneNumberController.text,
+        'dateOfBirth': dateOfBirth,
+        'location': location,
+        'numberOfChildren': numberOfChildren,
+      });
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Profile Saved')));
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to save profile')));
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
   }
@@ -210,10 +239,10 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
                 SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
-                    onPressed: isLoading ? null : saveProfile,
+                    onPressed: saveProfile,
                     child: isLoading
                         ? CircularProgressIndicator(color: Colors.white)
-                        : Text('Save'),
+                        : Text('Save Profile'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       padding:
@@ -336,29 +365,5 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
         ],
       ),
     );
-  }
-
-  void saveProfile() async {
-    // setState(() {
-    //   isLoading = true;
-    // });
-
-    // await FirebaseFirestore.instance.collection('parents').add({
-    //   'fullName': fullNameController.text,
-    //   'familyType': familyType,
-    //   'email': emailController.text,
-    //   'phoneCode': phoneCodeController.text,
-    //   'phoneNumber': phoneNumberController.text,
-    //   'dateOfBirth': dateOfBirth,
-    //   'location': location,
-    //   'numberOfChildren': numberOfChildren,
-    // });
-
-    setState(() {
-      isLoading = false;
-    });
-
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Profile Saved')));
   }
 }
